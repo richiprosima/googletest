@@ -88,7 +88,13 @@ endif()
 # are used for other targets, to ensure that gtest can be compiled by a user
 # aggressive about warnings.
 cxx_library(gtest "${cxx_strict}" src/gtest-all.cc)
+set_target_properties(gtest PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(gtest PROPERTIES COMPILE_PDB_NAME_RELEASE gtest)
+set_target_properties(gtest PROPERTIES COMPILE_PDB_NAME_DEBUG gtestd)
 cxx_library(gtest_main "${cxx_strict}" src/gtest_main.cc)
+set_target_properties(gtest_main PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(gtest_main PROPERTIES COMPILE_PDB_NAME_RELEASE gtest_main)
+set_target_properties(gtest_main PROPERTIES COMPILE_PDB_NAME_DEBUG gtest_maind)
 target_link_libraries(gtest_main gtest)
 
 # If the CMake version supports it, attach header directory information
